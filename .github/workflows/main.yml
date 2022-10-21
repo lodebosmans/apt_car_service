@@ -1,25 +1,25 @@
-name: Build and upload binary artifact
+name: Build, test and deliver container
 
 on: push
 
 jobs:
-  release:
+  delivery:
     runs-on: ubuntu-latest
-    name: Build, package and upload .jar artifact
+    name: Java 17 build, test, deliver container
     steps:
-    - uses: actions/checkout@v1
-    - name: Set up JDK 17
-      uses: actions/setup-java@v1
-      with:
-        java-version: 17
-    - name: Build and package project
-      run: mvn -f pom.xml package
-    - name: Show contents of the current working directory
-      run: ls -la
-    - name: Show contents of a target directory
-      run: ls -la target
-    - name: Upload Maven build artifact
-      uses: actions/upload-artifact@v1
-      with:
-        name: artifact
-        path: ./target/car-properties-service-0.0.1-SNAPSHOT.jar
+      - name: Check out repository
+        uses: actions/checkout@v1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+
+      - name: Start Mysql for integration test
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql database: 'cardb_test' # Optional, default value is "test". The specified database which will be created.
+          mysql root password: ${{ secrets.MYSQL_ROOT_PASSWORD }} # Required if "mysql user" is empty, default is empty. The root superuser password
+      
+      - name: Build, test and package project
+        run: mvn --batch-mode --update-snapshots verify
