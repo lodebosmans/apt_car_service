@@ -35,3 +35,9 @@ jobs:
 
       - name: Upload container to Docker Hub with Push
         run: docker push ${{ secrets.DOCKER_USER }}/car-service:latest
+        
+      - name: Upload Maven build artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifact
+          path: ./target/car-properties-service-0.0.1-SNAPSHOT.jar
