@@ -22,9 +22,9 @@ jobs:
           mysql root password: ${{ secrets.MYSQL_ROOT_PASSWORD }} # Required if "mysql user" is empty, default is empty. The root superuser password
       
       - name: Build, test and package project
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=lodebosmans
         
       - name: Docker login
