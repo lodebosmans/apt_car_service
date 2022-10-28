@@ -28,8 +28,7 @@ public class CarController {
             carRepository.save(new Car("Ferarri",300,2));
             carRepository.save(new Car("Volkswagen Golf",180,5));
         }
-
-        System.out.println(carRepository.findCarByCarBrand("Audi A4").getMaxSpeed());
+//        System.out.println(carRepository.findCarByCarBrand("Audi A4").getMaxSpeed());
     }
 
     @GetMapping("/cars/seats/{nrofseats}")
