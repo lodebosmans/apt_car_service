@@ -1,17 +1,28 @@
 package com.example.carpropertiesservice;
 
+import com.example.carpropertiesservice.controller.CarController;
+import com.example.carpropertiesservice.repository.CarRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 @SpringBootTest
 class CarPropertiesServiceApplicationTests {
 
-//    @Test
-//    void contextLoads() {
-//
-//    }
+
+    @Autowired
+    private CarController carController;
+
+    @Autowired
+    private CarRepository carRepository;
+
+    @Test
+    public void contextLoads() throws Exception {
+        assertThat(carController).isNotNull();
+        assertThat(carRepository).isNotNull();
+    }
 
 }

@@ -104,7 +104,7 @@ class CarControllerIntegrationTests {
 
 
     @Test
-    public void testSetNrOfSeats() {
+    void testSetNrOfSeats() {
         Integer nrOfSeats = 3;
         Car car = new Car();
         car.setNumberOfSeats(nrOfSeats);
