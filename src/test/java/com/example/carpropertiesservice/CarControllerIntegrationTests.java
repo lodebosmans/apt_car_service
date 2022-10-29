@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CarControllerIntegrationTests {
+class CarControllerIntegrationTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -49,7 +49,7 @@ public class CarControllerIntegrationTests {
     }
 
     @Test
-    public void givenCar_whenFindCarByNrOfSeats_thenReturnJsonListCar() throws Exception {
+    void givenCar_whenFindCarByNrOfSeats_thenReturnJsonListCar() throws Exception {
 
         mockMvc.perform(get("/cars/seats/{nrofseats}",5))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -60,7 +60,7 @@ public class CarControllerIntegrationTests {
     }
 
     @Test
-    public void givenCar_whenGetCarByCarBrand_thenReturnJsonCar() throws Exception {
+    void givenCar_whenGetCarByCarBrand_thenReturnJsonCar() throws Exception {
 
         mockMvc.perform(get("/cars/{carBrand}","Audi A4"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -71,7 +71,7 @@ public class CarControllerIntegrationTests {
     }
 
     @Test
-    public void givenCars_whenGetAllCars_thenReturnJsonCars() throws Exception {
+    void givenCars_whenGetAllCars_thenReturnJsonCars() throws Exception {
 
         mockMvc.perform(get("/cars"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -87,7 +87,7 @@ public class CarControllerIntegrationTests {
 
 
     @Test
-    public void testSetCarBrand() {
+    void testSetCarBrand() {
         String carBrand = "Seat";
         Car car = new Car();
         car.setCarBrand(carBrand);
@@ -95,7 +95,7 @@ public class CarControllerIntegrationTests {
     }
 
     @Test
-    public void testSetMaxSpeed() {
+    void testSetMaxSpeed() {
         Integer maxSpeed = 100;
         Car car = new Car();
         car.setMaxSpeed(maxSpeed);

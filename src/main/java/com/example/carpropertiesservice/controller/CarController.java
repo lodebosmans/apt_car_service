@@ -6,10 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.PostConstruct;
 import java.util.List;
-import ch.qos.logback.core.sift.AppenderTracker;
 import com.example.carpropertiesservice.model.Car;
 import com.example.carpropertiesservice.repository.CarRepository;
-import org.hibernate.result.UpdateCountOutput;
+
 
 
 @RestController
@@ -28,7 +27,6 @@ public class CarController {
             carRepository.save(new Car("Ferarri",300,2));
             carRepository.save(new Car("Volkswagen Golf",180,5));
         }
-//        System.out.println(carRepository.findCarByCarBrand("Audi A4").getMaxSpeed());
     }
 
     @GetMapping("/cars/seats/{nrofseats}")

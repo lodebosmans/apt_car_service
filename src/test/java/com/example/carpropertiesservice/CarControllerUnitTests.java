@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CarControllerUnitTests {
+class CarControllerUnitTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -40,7 +40,7 @@ public class CarControllerUnitTests {
     private List<Car> AllCarsWith5Seats = Arrays.asList(car1);
 
     @Test
-    public void givenCar_whenFindCarByNrOfSeats_thenReturnJsonListCar() throws Exception {
+    void givenCar_whenFindCarByNrOfSeats_thenReturnJsonListCar() throws Exception {
 
         given(carRepository.findCarsByNumberOfSeats(5)).willReturn(AllCarsWith5Seats);
 
@@ -53,7 +53,7 @@ public class CarControllerUnitTests {
     }
 
     @Test
-    public void givenCar_whenFindCarByCarBrand_thenReturnJsonCar() throws Exception {
+    void givenCar_whenFindCarByCarBrand_thenReturnJsonCar() throws Exception {
 
         given(carRepository.findCarByCarBrand("Audi A4")).willReturn(car1);
 
@@ -66,7 +66,7 @@ public class CarControllerUnitTests {
     }
 
     @Test
-    public void givenCars_whenGetAllCars_thenReturnJsonCars() throws Exception {
+    void givenCars_whenGetAllCars_thenReturnJsonCars() throws Exception {
 
         given(carRepository.findAll()).willReturn(allCars);
 
@@ -83,7 +83,7 @@ public class CarControllerUnitTests {
     }
 
     @Test
-    public void testSetCarBrand() {
+    void testSetCarBrand() {
         String carBrand = "Seat";
         Car car = new Car();
         car.setCarBrand(carBrand);
@@ -91,7 +91,7 @@ public class CarControllerUnitTests {
     }
 
     @Test
-    public void testSetMaxSpeed() {
+    void testSetMaxSpeed() {
         Integer maxSpeed = 100;
         Car car = new Car();
         car.setMaxSpeed(maxSpeed);
@@ -100,7 +100,7 @@ public class CarControllerUnitTests {
 
 
     @Test
-    public void testSetNrOfSeats() {
+    void testSetNrOfSeats() {
         Integer nrOfSeats = 3;
         Car car = new Car();
         car.setNumberOfSeats(nrOfSeats);
