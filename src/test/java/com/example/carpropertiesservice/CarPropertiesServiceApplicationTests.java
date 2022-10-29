@@ -20,7 +20,7 @@ class CarPropertiesServiceApplicationTests {
     private CarRepository carRepository;
 
     @Test
-    public void contextLoads() throws Exception {
+    void contextLoads() throws Exception {
         assertThat(carController).isNotNull();
         assertThat(carRepository).isNotNull();
     }
