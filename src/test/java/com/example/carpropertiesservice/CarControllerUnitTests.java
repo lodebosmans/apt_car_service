@@ -32,7 +32,7 @@ class CarControllerUnitTests {
     @MockBean
     private CarRepository carRepository;
 
-    private Car car1 = new Car("Audi A4",200,5);
+    private Car car1 = new Car("Audi",200,5);
     private Car car2 = new Car("Tesla", 150,4);
 
     private List<Car> allCars = Arrays.asList(car1, car2);
@@ -47,7 +47,7 @@ class CarControllerUnitTests {
         mockMvc.perform(get("/cars/seats/{nrofseats}",5))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].carBrand",is("Audi A4")))
+                .andExpect(jsonPath("$[0].carBrand",is("Audi")))
                 .andExpect(jsonPath("$[0].maxSpeed",is(200)))
                 .andExpect(jsonPath("$[0].numberOfSeats",is(5)));
     }
@@ -55,12 +55,12 @@ class CarControllerUnitTests {
     @Test
     void givenCar_whenFindCarByCarBrand_thenReturnJsonCar() throws Exception {
 
-        given(carRepository.findCarByCarBrand("Audi A4")).willReturn(car1);
+        given(carRepository.findCarByCarBrand("Audi")).willReturn(car1);
 
-        mockMvc.perform(get("/cars/{carBrand}","Audi A4"))
+        mockMvc.perform(get("/cars/{carBrand}","Audi"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.carBrand",is("Audi A4")))
+                .andExpect(jsonPath("$.carBrand",is("Audi")))
                 .andExpect(jsonPath("$.maxSpeed",is(200)))
                 .andExpect(jsonPath("$.numberOfSeats",is(5)));
     }
@@ -74,7 +74,7 @@ class CarControllerUnitTests {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].carBrand",is("Audi A4")))
+                .andExpect(jsonPath("$[0].carBrand",is("Audi")))
                 .andExpect(jsonPath("$[0].maxSpeed",is(200)))
                 .andExpect(jsonPath("$[0].numberOfSeats",is(5)))
                 .andExpect(jsonPath("$[1].carBrand",is("Tesla")))

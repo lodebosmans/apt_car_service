@@ -32,7 +32,7 @@ class CarControllerIntegrationTests {
     @Autowired
     private CarRepository carRepository;
 
-    private Car car1 = new Car("Audi A4",200,5);
+    private Car car1 = new Car("Audi",200,5);
     private Car car2 = new Car("Tesla", 150,4);
 
     @BeforeEach
@@ -54,7 +54,7 @@ class CarControllerIntegrationTests {
         mockMvc.perform(get("/cars/seats/{nrofseats}",5))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].carBrand",is("Audi A4")))
+                .andExpect(jsonPath("$[0].carBrand",is("Audi")))
                 .andExpect(jsonPath("$[0].maxSpeed",is(200)))
                 .andExpect(jsonPath("$[0].numberOfSeats",is(5)));
     }
@@ -62,10 +62,10 @@ class CarControllerIntegrationTests {
     @Test
     void givenCar_whenGetCarByCarBrand_thenReturnJsonCar() throws Exception {
 
-        mockMvc.perform(get("/cars/{carBrand}","Audi A4"))
+        mockMvc.perform(get("/cars/{carBrand}","Audi"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.carBrand",is("Audi A4")))
+                .andExpect(jsonPath("$.carBrand",is("Audi")))
                 .andExpect(jsonPath("$.numberOfSeats",is(5)))
                 .andExpect(jsonPath("$.maxSpeed",is(200)));
     }
@@ -77,7 +77,7 @@ class CarControllerIntegrationTests {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].carBrand",is("Audi A4")))
+                .andExpect(jsonPath("$[0].carBrand",is("Audi")))
                 .andExpect(jsonPath("$[0].maxSpeed",is(200)))
                 .andExpect(jsonPath("$[0].numberOfSeats",is(5)))
                 .andExpect(jsonPath("$[1].carBrand",is("Tesla")))
