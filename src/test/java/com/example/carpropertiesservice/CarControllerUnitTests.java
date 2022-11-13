@@ -47,7 +47,7 @@ class CarControllerUnitTests {
         mockMvc.perform(get("/cars/seats/{nrofseats}",5))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].carBrand",is("Audi")))
+                .andExpect(jsonPath("$[0].carBrand",is("audi")))
                 .andExpect(jsonPath("$[0].maxSpeed",is(200)))
                 .andExpect(jsonPath("$[0].numberOfSeats",is(5)));
     }
@@ -55,12 +55,12 @@ class CarControllerUnitTests {
     @Test
     void givenCar_whenFindCarByCarBrand_thenReturnJsonCar() throws Exception {
 
-        given(carRepository.findCarByCarBrand("Audi")).willReturn(car1);
+        given(carRepository.findCarByCarBrand("audi")).willReturn(car1);
 
-        mockMvc.perform(get("/cars/{carBrand}","Audi"))
+        mockMvc.perform(get("/cars/{carBrand}","audi"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.carBrand",is("Audi")))
+                .andExpect(jsonPath("$.carBrand",is("audi")))
                 .andExpect(jsonPath("$.maxSpeed",is(200)))
                 .andExpect(jsonPath("$.numberOfSeats",is(5)));
     }
@@ -74,17 +74,17 @@ class CarControllerUnitTests {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].carBrand",is("Audi")))
+                .andExpect(jsonPath("$[0].carBrand",is("audi")))
                 .andExpect(jsonPath("$[0].maxSpeed",is(200)))
                 .andExpect(jsonPath("$[0].numberOfSeats",is(5)))
-                .andExpect(jsonPath("$[1].carBrand",is("Tesla")))
+                .andExpect(jsonPath("$[1].carBrand",is("tesla")))
                 .andExpect(jsonPath("$[1].maxSpeed",is(150)))
                 .andExpect(jsonPath("$[1].numberOfSeats",is(4)));
     }
 
     @Test
     void testSetCarBrand() {
-        String carBrand = "Seat";
+        String carBrand = "seat";
         Car car = new Car();
         car.setCarBrand(carBrand);
         assertEquals(car.getCarBrand(), carBrand);
